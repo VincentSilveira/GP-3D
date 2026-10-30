@@ -1,0 +1,1 @@
+curl -L -o GP-3D.zip https://github.com/VincentSilveira/GP-3D/archive/refs/heads/main.zip
