@@ -1,0 +1,24 @@
+Theory:
+Game deployment is the final stage of game development in which the completed game is packaged
+and exported for execution on a target platform. Unity supports multiple deployment platforms such
+as Windows, macOS, Linux, Android, iOS, and WebGL, allowing developers to create games for a
+wide variety of devices.
+Before deployment, Unity compiles all project assets, scripts, scenes, and resources into a platformspecific executable or application package. Developers must configure the appropriate Build Settings
+and install the required platform support modules.
+Unity supports the following common deployment platforms:
+• Windows PC (.exe executable)
+• Android (.apk package)
+• WebGL (browser-based application)
+• iOS
+• Linux
+• macOS
+The deployment process involves selecting the target platform, adding game scenes, configuring
+player settings, and generating the build. Proper testing should be performed after deployment to
+ensure that the game functions correctly on the selected platform.
+Procedure :
+PART A:
+1. Select the Windows Platform.
+2. Check the Build Settings.
+3. Build the Game.
+4. Run the Windows Game.
+5. Verify the Windows Deployment.

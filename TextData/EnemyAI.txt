@@ -1,0 +1,103 @@
+Artificial Intelligence (AI) in games enables non-player characters (NPCs) to behave intelligently by
+making decisions based on the game environment. Enemy AI enhances gameplay by allowing
+enemies to patrol, detect players, chase targets, and attack automatically.
+Unity provides an AI Navigation (NavMesh) system that allows enemies to navigate around obstacles
+and move intelligently toward a destination.
+The main components used are:
+• NavMesh Surface: Defines the walkable area.
+• NavMesh Agent: Controls the movement of AI characters.
+• NavMesh Obstacle: Creates obstacles that AI avoids.
+• C# Scripts: Implement decision-making logic such as patrol, chase, and attack.
+A simple enemy AI generally follows these behaviors:
+• Idle: Enemy remains stationary.
+• Patrol: Enemy moves between predefined waypoints.
+• Detect: Enemy searches for the player within a specified range.
+• Chase: Enemy follows the player using NavMesh pathfinding.
+• Attack: Enemy attacks when the player is close enough.
+This practical demonstrates the implementation of intelligent enemy behavior using Unity's built-in
+navigation system.
+
+Steps:
+
+Here are the simple steps to create a 3D Enemy AI that follows the Player using NavMesh in Unity 6.3.
+Step 1: Create the Player
+1. Create a 3D Sphere.
+2. Rename it Player.
+3. Add Rigidbody.
+4. Add Sphere Collider.
+5. Set Tag to Player.
+6. Position it on the Ground.
+Step 2: Create the Enemy
+1. Create another 3D Sphere.
+2. Rename it Enemy.
+3. Change its material/color to red.
+4. Add NavMeshAgent.
+5. Add Sphere Collider.
+6. Add Rigidbody.
+7. Set Rigidbody to Is Kinematic.
+Step 3: Set up NavMesh
+
+
+
+1. Open Window → Package Manager.
+2. Search for AI Navigation.
+3. Install it.
+4. Select Ground.
+5. Add Component → NavMeshSurface.
+6. Set Collect Objects to All.
+7. Click Bake.
+8. Check that the walkable ground appears blue.
+Step 4: Create Enemy AI Script
+Create a C# script called EnemyAI.
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyAI : MonoBehaviour
+{
+    public Transform player;
+
+    private NavMeshAgent agent;
+
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    void Update()
+    {
+        if (player == null) return;
+
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(player.position);
+        }
+    }
+}
+
+
+Step 5: Connect Player
+1. Select Enemy.
+2. Attach the EnemyAI script.
+3. Drag Player from Hierarchy into the Player field.
+Step 6: Configure NavMeshAgent
+Select Enemy and set:
+Property	Value
+Speed	3.5
+Angular Speed	120
+Acceleration	8
+Stopping Distance	1.5
+Auto Braking	Enabled
+
+Step 7: Add Obstacles
+
+
+1. Create cubes as obstacles.
+2. Add NavMeshObstacle to them.
+3. Enable Carve.
+4. Make sure the obstacles are positioned on the ground.
+5. Press Play and test.
+Step 8: Test
+- Move the Player.
+- Enemy should follow.
+- Put an obstacle between them.
+- Enemy should find another route around it.

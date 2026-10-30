@@ -1,0 +1,62 @@
+A 2D game is developed using two-dimensional graphics where objects move along the X and Y
+axes. Unity provides a complete environment for creating 2D games using Sprites, Rigidbody2D,
+Collider2D components, and C# scripting.
+Player Movement is implemented by reading keyboard input through Unity's Input System and
+updating the player's position accordingly. The movement is usually controlled using the
+Transform or Rigidbody2D component.
+Collision Detection is the process of identifying when two game objects come into contact. Unity
+provides Box Collider 2D, Circle Collider 2D, and Polygon Collider 2D for detecting collisions.
+A Rigidbody2D component enables physics-based interactions, while collision events such as
+OnCollisionEnter2D() are used to detect and respond to collisions between objects.
+Movement and collision detection are fundamental concepts in game development as they allow
+interaction between the player and the game environment.
+
+
+Steps:
+1. Create your player
+1. Create a 2D project.
+2. Add a Sprite (your player).
+3. Add a Rigidbody2D component.
+4. Set Gravity Scale = 0.
+5. Set Freeze Rotation Z under Constraints.
+6. Add a Collider2D (Box Collider 2D or Circle Collider 2D).
+
+
+2. Create player movement
+Create a C# script called PlayerMovement2D.cs.
+
+using UnityEngine;
+
+public class PlayerMovement2D : MonoBehaviour
+{
+    public float speed = 5f;
+
+    private Rigidbody2D rb;
+    private Vector2 movement;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+    }
+
+    void FixedUpdate()
+    {
+        rb.linearVelocity = movement.normalized * speed;
+    }
+}
+
+
+Attach this script to your Player.
+
+
+3. Create obstacles
+1. Add square sprites to your scene.
+2. Scale them to create walls or obstacles.
+3. Add Box Collider 2D.
+4. Make sure Is Trigger is unchecked.

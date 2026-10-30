@@ -1,0 +1,77 @@
+Physics is an essential component of modern game development that enables realistic movement and
+interaction between game objects. Unity provides a built-in Physics Engine (NVIDIA PhysX) for
+simulating real-world physical behaviors such as gravity, collision, friction, bouncing, and forces.
+Physics in Unity is achieved using various components:
+• Rigidbody: Makes a GameObject respond to gravity and physical forces.
+• Collider: Defines the physical boundaries of an object.
+• Physics Material: Controls friction and bounciness during collisions.
+• Gravity: Simulates Earth's gravitational force.
+• Force: Used to push or move objects realistically using scripts.
+Unity supports different collider types such as:
+• Box Collider
+• Sphere Collider
+• Capsule Collider
+• Mesh Collider
+The Rigidbody component enables an object to react to gravity, collisions, and external forces.
+Without a Rigidbody, a GameObject behaves as a static object.
+Physics-based games create realistic gameplay experiences by allowing objects to move, collide,
+bounce, roll, and interact naturally.
+
+Steps:
+For your ball jump:
+1. Select your Player Ball.
+2. In the Inspector, find Rigidbody.
+3. Set Use Gravity = Enabled.
+4. Set Is Kinematic = Disabled.
+5. Set Mass = 1.
+6. In your script, set Jump Force = 5.
+7. Use this code:
+public void OnJump(InputValue value)
+{
+    if (value.isPressed)
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+}
+
+
+8. In Input Actions, bind Jump → Space.
+9. Press Play and press Space to jump.
+No Physics Material is required for basic jumping.
+
+Open the Project window.
+
+
+
+Right-click inside the Assets folder.
+
+
+
+Select Create → Physics Material.
+
+
+
+Rename it BouncyMaterial.
+
+
+
+Select BouncyMaterial.
+
+
+
+Set:
+- Dynamic Friction: 0.3
+- Static Friction: 0.3
+- Bounciness: 0.5
+
+
+
+Select your Player Ball.
+
+
+
+In the Inspector, find Sphere Collider.
+
+
+
+Drag BouncyMaterial into the Material field.

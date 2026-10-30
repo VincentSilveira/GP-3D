@@ -1,0 +1,155 @@
+
+A User Interface (UI) is the medium through which players interact with a game. It provides visual
+elements such as buttons, menus, text, images, health bars, score displays, and settings panels. Unity
+provides a powerful UI system that enables developers to design responsive and interactive interfaces
+using the Canvas component.
+A Heads-Up Display (HUD) is a part of the UI that displays real-time game information without
+interrupting gameplay. Common HUD elements include player health, score, timer, coins collected,
+ammunition, and player level.
+Menus allow users to navigate through different parts of the game, such as starting a new game, pausing
+gameplay, accessing settings, or quitting the application.
+Unity's UI system consists of several important components:
+• Canvas: The parent object that contains all UI elements.
+• Panel: Used to group UI components.
+• Text/TextMeshPro: Displays textual information.
+• Button: Performs actions when clicked.
+• Image: Displays icons, logos, or backgrounds.
+• Slider: Used for volume, health, or progress bars.
+• Event System: Handles user input for UI interactions.
+A well-designed UI enhances usability, improves user experience, and provides essential game
+information efficiently.
+
+
+
+
+Steps:
+Unity 3D Ball Game – Complete Steps
+1. Create Main Menu Scene
+1. Open Unity.
+2. Create a new scene.
+3. Save it as MainMenu.
+4. Right-click Hierarchy → UI → Canvas.
+5. Add a Panel to the Canvas for the background.
+6. Add a TextMeshPro text object and name it GameTitle.
+7. Set the title to Ball Game.
+8. Add three buttons:
+   - Play
+   - Restart
+   - Quit
+2. Create Main Menu Controller
+1. In the Project window, right-click → Create → C# Script.
+2. Name it MainMenuController.
+3. Attach it to an empty GameObject named MainMenuController.
+4. Add the following code:
+
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenuController : MonoBehaviour
+{
+    public void PlayGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
+    }
+}
+
+
+
+5. Select the Play button → On Click().
+6. Drag the MainMenuController GameObject into the object field.
+7. Select PlayGame().
+8. Repeat for Restart → RestartGame().
+9. Repeat for Quit → QuitGame().
+3. Create Game Scene
+1. Create a new scene.
+2. Save it as GameScene.
+3. Add your Player Ball.
+4. Add a Rigidbody and Sphere Collider.
+5. Add your PlayerMovement3 script.
+6. Add your ground, walls and obstacles.
+7. Set up your directional light.
+8. Set up your Main Camera.
+4. Make Camera Follow the Ball
+1. Create a C# script named CameraFollow.
+2. Attach it to the Main Camera.
+3. Add this code:
+
+using UnityEngine;
+
+public class CameraFollow : MonoBehaviour
+{
+    public Transform player;
+    public Vector3 offset = new Vector3(0, 5, -7);
+
+    void LateUpdate()
+    {
+        transform.position = player.position + offset;
+    }
+}
+
+
+
+4. Select Main Camera.
+5. Drag your Player Ball into the Player field.
+6. Adjust the camera rotation to look toward the ball.
+5. Create Game HUD
+1. Right-click Hierarchy → UI → Canvas.
+2. Set Render Mode to Screen Space - Overlay.
+3. Right-click Canvas → UI → Panel.
+4. Rename it HUDPanel.
+5. Position the panel at the top of the screen.
+6. Right-click HUDPanel → UI → Text - TextMeshPro.
+7. Rename it CrashText.
+8. Set its initial text to Crashes: 0.
+9. Position it at the top-left corner.
+
+
+
+6. Update Crash Counter
+1. Open your PlayerMovement3 script.
+2. Add using TMPro;.
+3. Declare the UI variable:
+[SerializeField] private TMP_Text crashText;
+
+
+4. Declare the counter:
+private int crash = 0;
+
+
+5. In Start(), call:
+UpdateCrashUI();
+
+
+6. In OnCollisionEnter(), increase the counter:
+crash++;
+UpdateCrashUI();
+
+
+7. Create the UI update method:
+private void UpdateCrashUI()
+{
+    if (crashText != null)
+        crashText.text = "Crashes: " + crash;
+}
+
+
+8. Save the script.
+9. Select Player Ball in Unity.
+10. Drag CrashText into the Crash Text field in the Inspector.
+7. Configure Build Scenes
+1. Open File → Build Profiles.
+2. Add MainMenu to the scene list.
+3. Add GameScene to the scene list.
+4. Make sure MainMenu is at index 0.
+5. Save your project.

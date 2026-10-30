@@ -1,0 +1,75 @@
+Audio plays a vital role in enhancing the gaming experience by providing feedback, creating
+atmosphere, and improving player immersion. Unity provides a built-in Audio System that supports
+background music, sound effects, and spatial (3D) audio.
+Unity primarily uses two components for audio:
+• Audio Source: Plays audio clips attached to a GameObject.
+• Audio Listener: Receives and processes audio in the scene. By default, the Main
+Camera contains one Audio Listener.
+Audio files such as WAV, MP3, OGG, and AIFF can be imported into Unity. Background music
+generally plays continuously throughout the game, whereas sound effects are triggered by specific
+events such as jumping, collisions, collecting items, or button clicks.
+Using audio effectively improves user engagement and provides important feedback during gameplay.
+
+Steps:
+1. Add Rolling Sound
+
+1. Right-click in Hierarchy → Create Empty.
+2. Rename it RollingSound.
+3. Select it → Add Component → Audio Source.
+4. Drag your rolling sound into AudioClip.
+5. Enable Loop.
+6. Disable Play On Awake.
+7. Set Volume to 0.3.
+In your PlayerMovement2 script, add:
+[SerializeField] private AudioSource rollingSFX;
+
+
+At the end of FixedUpdate() add:
+if (x != 0 || y != 0)
+{
+    if (!rollingSFX.isPlaying)
+        rollingSFX.Play();
+}
+else
+{
+    rollingSFX.Stop();
+}
+
+
+Drag the RollingSound Audio Source into the Rolling SFX field in the Player Inspector.
+
+2. Add Crash / Collision Sound
+
+
+1. Select your Player Sphere.
+2. Add Component → Audio Source.
+3. Assign your collision sound to AudioClip.
+4. Disable Play On Awake.
+5. Disable Loop.
+Add this variable:
+[SerializeField] private AudioSource wallHitSFX;
+
+
+Inside your existing OnCollisionEnter():
+private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Wall") ||
+        collision.gameObject.CompareTag("Obstacle"))
+    {
+        Debug.Log("Wall Hit");
+
+        wallHitSFX.PlayOneShot(wallHitSFX.clip);
+    }
+}
+
+
+You can use the Player's Audio Source directly. No separate Empty GameObject is required.
+3. Add Background Music (BGM)
+
+1. Right-click Hierarchy → Create Empty.
+2. Rename it BackgroundMusic.
+3. Add Component → Audio Source.
+4. Drag your background music file into AudioClip.
+5. Enable Loop.
+6. Enable Play On Awake.
+7. Set Volume to 0.2.

@@ -1,0 +1,28 @@
+Theory:
+Game Testing is the process of verifying that all game mechanics function correctly according to the
+game design. It ensures that player movement, enemy behavior, collisions, animations, scoring, audio,
+and user interface work as expected.
+Debugging is the process of identifying, analyzing, and correcting errors (bugs) in a game. Bugs may
+occur due to logical mistakes, scripting errors, incorrect object configuration, or missing references.
+Unity provides several debugging tools that help developers identify and resolve issues efficiently:
+• Console Window: Displays errors, warnings, and debug messages.
+• Debug.Log(): Prints custom messages to the Console for monitoring program
+execution.
+• Inspector Window: Allows developers to inspect and modify GameObject properties
+during runtime.
+• Play Mode: Used to test gameplay interactively.
+• Breakpoints (Visual Studio): Pause program execution to inspect variables and
+program flow.
+Game testing includes verifying gameplay mechanics such as movement, collision detection, scoring,
+audio playback, enemy AI, UI interactions, and game state transitions. Proper debugging improves
+game stability, performance, and user experience.
+Procedure :
+1. Open the Unity Console.
+2. Add Debug.Log() Statements.
+3. Check Variable Values.
+4. Check Collision and Trigger Events.
+5. Identify and Fix Script Errors.
+6. Use Breakpoints for Debugging.
+7. Retest the Gameplay Mechanics.
+8. Record the Testing Results.
+9. Final Verification
